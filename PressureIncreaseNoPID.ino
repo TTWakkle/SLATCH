@@ -6,7 +6,12 @@ in order to reach a linear increase in pressure as close as possible.
 This program does not utilize the data from pressure transducer and 
 therefore has no information feedback loop running, it is a simple 
 procedure the Arduino follows for a duration of 3 minutes and returns
-a set of data.
+a set of data. The information used from the transducer is used to graph
+and analyze our results. Due to the transducer's high PSI range, creating
+a PID would not make any sense as the information gathered from the
+transducer is at such a low resolution. This low resolution meant that a 
+PID could be programmed easily but would not provide any benefits as it
+would suffer greatly from its inaccuracy.
 Author: Taha Twakkal
 Date: 2021/11/15 -- Present.
 =========================================================================*/
@@ -94,12 +99,12 @@ Date: 2021/11/15 -- Present.
         findMaxPSIRead();
         timer = t;
       //operating system and dispaying values on the serial monitor        
-        //Serial.print(timer);
-        //Serial.println(" seconds have passed");
+        Serial.print(timer);
+        Serial.println(" seconds have passed");
         Serial.println(pressureValue);
-        //Serial.println(" PSI");   
-        //Serial.print(maxPSIRead);
-        //Serial.println(" max PSI recorded so far");
+        Serial.println(" PSI");   
+        Serial.print(maxPSIRead);
+        Serial.println(" max PSI recorded so far");
         pumpOperation();
     }
     exit(0);
